@@ -1,23 +1,18 @@
-public class Lista {
-    private int primeiroElemento;
-    private int ultimoElemento;
-    private int quantidade;
+import javax.swing.JOptionPane;
 
+public class Lista {
     private int[] elementos;
+    private int quantidade;
 
     //Criar uma nova lista – Lista()
     public Lista() {
-        primeiroElemento = -1;
-        ultimoElemento = -1;
-        quantidade = 0;
         elementos = new int[5];
+        quantidade = 0;
     }
 
     public Lista(int limite) {
-        primeiroElemento = -1;
-        ultimoElemento = -1;
-        quantidade = 0;
         elementos = new int[limite];
+        quantidade = 0;
     }
 
     //Retornar a quantidade de elementos – getQuantidade()
@@ -41,12 +36,70 @@ public class Lista {
             return false;
     }
 
-    //Acessar o elemento na posição i – retornarElemento(i)
+    /**
+     * Acessar o elemento na posição i – retornarElemento(i)
+     * A primeira posição é zero
+     * @param posicao
+     * @return
+     */
+    public int retornarElemento(int posicao) {
+        if(entradaValida(posicao))
+            return elementos[posicao];
+        else
+            return -1;
+    }
+
+    //Checa se a posicao desejada é valida, ou seja, está dentro do vetor de elementos
+    private boolean entradaValida(int posicao) {
+        if(posicao >= 0 && posicao <= quantidade)
+            return true;
+        else
+            return false;
+    }
+
     //Inserir um elemento e na posição i – adicionarPosicao(e, i)
+    public void adicionarPosicao(int elemento, int posicao) {
+        if(estaCheia())
+            System.out.println("Lista está cheia!");
+        else if(entradaValida(posicao)) {
+            for(int i = quantidade - 1; i >= posicao; i--) {
+                elementos[i+1] = elementos[i];
+            }
+            elementos[posicao] = elemento;
+            quantidade++;
+        }
+    }
+
     //Inserir um elemento e no início – adicionarInicio(e)
+    public void adicionarInicio(int elemento) {
+        adicionarPosicao(elemento, 0);
+    }
+
     //Inserir um elemento e no final – adicionarFinal(e)
+    public void adicionarFinal(int elemento) {
+        adicionarPosicao(elemento, quantidade);
+    }
+
     //Remover o elemento e na posição i – removerPosicao(i)
+
     //Remover o elemento no inicio – removerInicio(i)
+
     //Remover o elemento no final – removerFinal(i)
 
+
+
+
+
+    //Exibir todos os elementos
+    public void exibir(){
+        String elementos = this.elementos[0] + ", ";
+        for (int i = 1; i < quantidade; i++) {
+            elementos += this.elementos[i];
+
+            if(i != (quantidade - 1))
+                elementos += ", ";
+        }
+
+        JOptionPane.showMessageDialog(null, elementos);
+    }
 }

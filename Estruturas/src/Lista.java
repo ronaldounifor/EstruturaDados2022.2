@@ -93,9 +93,15 @@ public class Lista {
         }
     }
 
-    //Remover o elemento no inicio – removerInicio(i)
+    //Remover o elemento no inicio – removerInicio()
+    public void removerInicio() {
+        removerPosicao(0);
+    }
 
-    //Remover o elemento no final – removerFinal(i)
+    //Remover o elemento no final – removerFinal()
+    public void removerFinal() {
+        removerPosicao(quantidade - 1);
+    }
 
     //Exibir todos os elementos
     public void exibir(){

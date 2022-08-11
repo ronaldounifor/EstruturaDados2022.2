@@ -62,9 +62,9 @@ public class Lista {
         if(estaCheia())
             System.out.println("Lista está cheia!");
         else if(entradaValida(posicao)) {
-            for(int i = quantidade - 1; i >= posicao; i--) {
+            for(int i = quantidade - 1; i >= posicao; i--)
                 elementos[i+1] = elementos[i];
-            }
+                
             elementos[posicao] = elemento;
             quantidade++;
         }
@@ -81,14 +81,21 @@ public class Lista {
     }
 
     //Remover o elemento e na posição i – removerPosicao(i)
+    public void removerPosicao(int posicao) {
+        if(estaVazia())
+            System.out.println("Lista está vazia!");
+        else if(entradaValida(posicao)) {
+            
+            for(int i = posicao; i < quantidade - 1; i++)
+                elementos[i] = elementos[i+1];
+            
+            quantidade--;
+        }
+    }
 
     //Remover o elemento no inicio – removerInicio(i)
 
     //Remover o elemento no final – removerFinal(i)
-
-
-
-
 
     //Exibir todos os elementos
     public void exibir(){

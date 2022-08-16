@@ -1,3 +1,4 @@
+package estruturas;
 import javax.swing.JOptionPane;
 
 public class Lista {

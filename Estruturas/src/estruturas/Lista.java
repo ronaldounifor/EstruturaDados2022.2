@@ -44,7 +44,7 @@ public class Lista {
      * @return
      */
     public int retornarElemento(int posicao) {
-        if(entradaValida(posicao))
+        if(entradaValida(posicao) && !estaVazia())
             return elementos[posicao];
         else
             return -1;
@@ -82,26 +82,29 @@ public class Lista {
     }
 
     //Remover o elemento e na posição i – removerPosicao(i)
-    public void removerPosicao(int posicao) {
-        if(estaVazia())
-            System.out.println("Lista está vazia!");
-        else if(entradaValida(posicao)) {
+    public int removerPosicao(int posicao) {
+        if(estaVazia() || !entradaValida(posicao))
+            return -1;
+        else {
+            int removido = elementos[posicao];
             
             for(int i = posicao; i < quantidade - 1; i++)
                 elementos[i] = elementos[i+1];
             
             quantidade--;
+
+            return removido;
         }
     }
 
     //Remover o elemento no inicio – removerInicio()
-    public void removerInicio() {
-        removerPosicao(0);
+    public int removerInicio() {
+        return removerPosicao(0);
     }
 
     //Remover o elemento no final – removerFinal()
-    public void removerFinal() {
-        removerPosicao(quantidade - 1);
+    public int removerFinal() {
+        return removerPosicao(quantidade - 1);
     }
 
     //Exibir todos os elementos

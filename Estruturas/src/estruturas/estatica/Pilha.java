@@ -1,4 +1,4 @@
-package estruturas;
+package estruturas.estatica;
 
 import javax.swing.JOptionPane;
 
@@ -80,5 +80,6 @@ public class Pilha {
 
         JOptionPane.showMessageDialog(null, elementos);
     }
+    
     
 }

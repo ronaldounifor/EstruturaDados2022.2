@@ -1,4 +1,4 @@
-package estruturas;
+package estruturas.estatica;
 import javax.swing.JOptionPane;
 
 public class Lista {
@@ -118,5 +118,13 @@ public class Lista {
         }
 
         JOptionPane.showMessageDialog(null, elementos);
+    }
+
+    public void media() {
+        double soma = 0;
+        for (int i = 0; i < quantidade; i++)
+            soma += elementos[i];
+
+        System.out.println("Média = " + soma/quantidade);
     }
 }

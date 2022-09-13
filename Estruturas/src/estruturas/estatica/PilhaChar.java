@@ -1,4 +1,4 @@
-package estruturas;
+package estruturas.estatica;
 
 import javax.swing.JOptionPane;
 
@@ -118,4 +118,34 @@ public class PilhaChar {
         }
         return pilhaAuxiliar;
     }
+
+    public void inverter(PilhaChar pilha){
+        PilhaChar pilhaAux1 = new PilhaChar(getQuantidade());
+        PilhaChar pilhaAux2 = new PilhaChar(getQuantidade());
+        while (!pilha.estaVazia()){
+          pilhaAux1.empilhar(pilha.retornarElemento());
+          pilha.desempilhar();
+        }
+        while (!pilhaAux1.estaVazia()){
+          pilhaAux2.empilhar(pilhaAux1.retornarElemento());
+          pilhaAux1.desempilhar();
+        }
+        while (!pilhaAux2.estaVazia()){
+          pilha.empilhar(pilhaAux2.retornarElemento());
+          pilhaAux2.desempilhar();
+        }
+        
+      }
+
+    public void palindromo(PilhaChar pilha) throws CloneNotSupportedException {
+        PilhaChar pilhaAux1 = new PilhaChar();
+        
+
+        pilhaAux1.inverter(pilha);
+        if (pilha.retornarElemento() != pilhaAux1.retornarElemento()){
+          System.out.println("A palavra não é palíndromo!");
+        } else {
+          System.out.println("A palavra é palíndromo!");
+        }
+      }
 }

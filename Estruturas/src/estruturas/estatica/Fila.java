@@ -1,4 +1,4 @@
-package estruturas;
+package estruturas.estatica;
 
 import javax.swing.JOptionPane;
 

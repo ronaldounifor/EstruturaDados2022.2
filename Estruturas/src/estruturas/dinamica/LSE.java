@@ -1,5 +1,7 @@
 package estruturas.dinamica;
 
+import javax.swing.JOptionPane;
+
 import util.Validador;
 
 /**
@@ -31,7 +33,17 @@ public class LSE {
     }
 
     //Acessar o elemento na posição i – retornarElemento(i)
+    public No retornarElemento(int posicao) {
+        if(!entradaValida(posicao))
+            return null;
+        else {
+            No elementoAtual = primeiro;
+            for(int i = 0; i < posicao; i++)
+                elementoAtual = elementoAtual.getProximo();
 
+            return elementoAtual;
+        }
+    }
 
     //Checa se a posicao desejada é valida, ou seja, está dentro do vetor de elementos
     private boolean entradaValida(int posicao) {
@@ -46,12 +58,8 @@ public class LSE {
         if(!entradaValida(posicao)) {
             System.out.println("Posição deve ser maior ou igual a zero e menor ou igual a quantidade.");
         } else {
-            No noAntigo = primeiro;
-            No noAnterior = null;
-            for(int i = 0; i < posicao; i++) {
-                noAnterior = noAntigo;
-                noAntigo = noAntigo.getProximo();
-            }
+            No noAntigo = retornarElemento(posicao);
+            No noAnterior = retornarElemento(posicao - 1);
             
             noNovo.setProximo(noAntigo);
 
@@ -70,9 +78,59 @@ public class LSE {
     }
 
     //Inserir um elemento e no início – adicionarInicio(e)
-    //Inserir um elemento e no final – adicionarFinal(e)
-    //Remover o elemento e na posição i – removerPosicao(i)
-    //Remover o elemento no inicio – removerInicio()
-    //Remover o elemento no final – removerFinal()
+    public void adicionarInicio(No noNovo) {
+        adicionarPosicao(noNovo, 0);
+    }
 
+    //Inserir um elemento e no final – adicionarFinal(e)
+    public void adicionarFinal(No noNovo) {
+        adicionarPosicao(noNovo, quantidade);
+    }
+
+    //Remover o elemento e na posição i – removerPosicao(i)
+    public No removerPosicao(int posicao) {
+        //validar
+        if(!entradaValida(posicao))
+            return null;
+        else {
+            No noAnterior = retornarElemento(posicao - 1);
+            No noRemovido = retornarElemento(posicao);
+
+            if(noAnterior != null)
+                noAnterior.setProximo(noRemovido.getProximo());
+
+            noRemovido.setProximo(null);
+            quantidade--;
+
+            return noRemovido;
+        }
+        
+    }
+
+    //FIXME
+    //Remover o elemento no inicio – removerInicio()
+    public No removerInicio() {
+        return removerPosicao(0);
+    }
+
+    //Remover o elemento no final – removerFinal()
+    public No removerFinal() {
+        return removerPosicao(quantidade - 1);
+    }
+
+    //Exibir todos os elementos
+    public void exibir(){
+        No atual = primeiro;
+        String elementos = "";
+        for (int i = 0; i < quantidade; i++) {
+            elementos += atual.getElemento();
+
+            atual = atual.getProximo();
+
+            if(i != (quantidade - 1))
+                elementos += ", ";
+        }
+
+        JOptionPane.showMessageDialog(null, elementos);
+    }
 }

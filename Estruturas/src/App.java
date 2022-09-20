@@ -1,34 +1,20 @@
-import estruturas.Lista;
-import estruturas.Pilha;
-import estruturas.PilhaChar;
+import estruturas.dinamica.LSE;
+import estruturas.dinamica.No;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Lista lista = new Lista();
+        LSE lista = new LSE();
 
-        lista.adicionarFinal(1);
-        lista.adicionarFinal(2);
-        lista.adicionarFinal(3);
-        lista.adicionarFinal(4);
-        lista.adicionarFinal(5);
+        lista.adicionarInicio(new No(9));
+        lista.adicionarInicio(new No(7));
+        lista.adicionarInicio(new No(5));
+        lista.adicionarInicio(new No(3));
+        lista.adicionarFinal(new No(14));
+        lista.removerPosicao(2);
+        lista.removerFinal();
+        lista.removerInicio();
 
-        Lista lista2 = inverterListaUsandoLista(lista);
-        lista2.exibir();
+        lista.exibir();
     }
 
-
-
-    public static Lista inverterListaUsandoLista(Lista lista) {
-        int numeroTrocas = lista.getQuantidade()/2;
-        for (int i = 0; i < numeroTrocas; i++) {
-            int elementoAux = lista.retornarElemento(i);
-            int posicaoUltimo = lista.getQuantidade()-1-i;
-
-            lista.removerPosicao(i);
-            lista.adicionarPosicao(lista.retornarElemento(posicaoUltimo - 1), i);
-            lista.removerPosicao(posicaoUltimo);
-            lista.adicionarPosicao(elementoAux, posicaoUltimo);
-        }
-        return lista;
-    }
 }

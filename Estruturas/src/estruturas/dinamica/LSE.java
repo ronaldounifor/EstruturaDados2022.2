@@ -2,8 +2,6 @@ package estruturas.dinamica;
 
 import javax.swing.JOptionPane;
 
-import util.Validador;
-
 /**
  * Lista Simplesmente Encadeada (LSE)
  */

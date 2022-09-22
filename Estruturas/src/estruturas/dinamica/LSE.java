@@ -9,13 +9,11 @@ import util.Validador;
  */
 public class LSE {
     private No primeiro;
-    private No ultimo;
     private int quantidade;
 
     //Criar uma nova lista – Lista()
     public LSE() {
         primeiro = null;
-        ultimo = null;
         quantidade = 0;
     }
 
@@ -62,10 +60,6 @@ public class LSE {
             No noAnterior = retornarElemento(posicao - 1);
             
             noNovo.setProximo(noAntigo);
-
-            //Se o nó na antiga posição (noAntigo) for nulo, então o novo nó (noNovo) está sendo adicionado na última posição.
-            if(noAntigo == null)
-                this.ultimo = noNovo;
             
             //Se o nó anterior (noAnterior) for nulo, então o novo nó (noNovo) está sendo adicionado na primeira posição. 
             if(noAnterior == null)
@@ -98,6 +92,8 @@ public class LSE {
 
             if(noAnterior != null)
                 noAnterior.setProximo(noRemovido.getProximo());
+            else
+                primeiro = noRemovido.getProximo();
 
             noRemovido.setProximo(null);
             quantidade--;
@@ -107,7 +103,6 @@ public class LSE {
         
     }
 
-    //FIXME
     //Remover o elemento no inicio – removerInicio()
     public No removerInicio() {
         return removerPosicao(0);

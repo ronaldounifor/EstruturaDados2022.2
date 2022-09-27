@@ -1,27 +1,26 @@
-import estruturas.dinamica.PilhaEncadeada;
+import estruturas.dinamica.LSECircular;
 import estruturas.dinamica.No;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        PilhaEncadeada pilha = new PilhaEncadeada();
+        LSECircular lista = new LSECircular();
+        
+        lista.adicionarInicio(new No(1));
+        lista.adicionarInicio(new No(2));
+        lista.adicionarInicio(new No(3));
+        lista.adicionarInicio(new No(4));
+        lista.adicionarInicio(new No(5));
+        lista.adicionarFinal(new No(12));
+        lista.adicionarFinal(new No(22));
 
-        pilha.empilhar(new No(2));
-        pilha.empilhar(new No(4));
-        pilha.empilhar(new No(6));
-        pilha.empilhar(new No(8));
-        pilha.desempilhar();
-        pilha.desempilhar();
-        pilha.desempilhar();
-        pilha.empilhar(new No(2));
-        pilha.empilhar(new No(4));
-        pilha.empilhar(new No(6));
-        pilha.empilhar(new No(8));
-        pilha.desempilhar();
-        pilha.desempilhar();
+        lista.removerInicio();
+        lista.removerInicio();
+        lista.removerInicio();
+        lista.removerFinal();
 
-        System.out.println(pilha.retornarElemento().getElemento());
+        lista.exibir();
 
-        pilha.exibir();
+        System.out.println(lista.retornarElemento(2).getProximo().getProximo().getElemento());
 
     }
 

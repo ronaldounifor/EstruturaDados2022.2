@@ -1,27 +1,26 @@
-import estruturas.dinamica.LSECircular;
-import estruturas.dinamica.No;
+import estruturas.dinamica.LDE;
+import estruturas.dinamica.NoDinamico;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        LSECircular lista = new LSECircular();
-        
-        lista.adicionarInicio(new No(1));
-        lista.adicionarInicio(new No(2));
-        lista.adicionarInicio(new No(3));
-        lista.adicionarInicio(new No(4));
-        lista.adicionarInicio(new No(5));
-        lista.adicionarFinal(new No(12));
-        lista.adicionarFinal(new No(22));
+        LDE lista = new LDE();
+        System.out.println(lista.estaVazia());
 
-        lista.removerInicio();
-        lista.removerInicio();
-        lista.removerInicio();
+        lista.adicionarInicio(new NoDinamico(1));
+        lista.adicionarFinal(new NoDinamico(3));
+        lista.adicionarPosicao(new NoDinamico(2), 1);
+
+        lista.adicionarInicio(new NoDinamico(5));
+        lista.adicionarInicio(new NoDinamico(5));
+        lista.adicionarInicio(new NoDinamico(5));
+
         lista.removerFinal();
+        lista.removerInicio();
+        lista.removerPosicao(3);
 
         lista.exibir();
-
-        System.out.println(lista.retornarElemento(2).getProximo().getProximo().getElemento());
-
+        System.out.println(lista.getQuantidade());
+        System.out.println(lista.estaVazia());
     }
 
 }

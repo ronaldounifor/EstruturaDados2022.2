@@ -1,32 +1,32 @@
 package estruturas.dinamica;
 
-public class No {
-    private int elemento;
-    private No proximo;
+public class No<T> {
+    private T elemento;
+    private No<T> proximo;
 
     public No() {
-        elemento = 0;
+        elemento = null;
         proximo = null;
     }
 
-    public No(int elemento) {
+    public No(T elemento) {
         this.elemento = elemento;
         proximo = null;
     }
 
-    public int getElemento() {
+    public T getElemento() {
         return this.elemento;
     }
 
-    public void setElemento(int elemento) {
+    public void setElemento(T elemento) {
         this.elemento = elemento;
     }
 
-    public No getProximo() {
+    public No<T> getProximo() {
         return this.proximo;
     }
 
-    public void setProximo(No proximo) {
+    public void setProximo(No<T> proximo) {
         this.proximo = proximo;
     }
 }

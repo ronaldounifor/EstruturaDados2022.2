@@ -1,19 +1,21 @@
 package estruturas.estatica;
 
+import java.lang.reflect.Array;
+
 import javax.swing.JOptionPane;
 
-public class Pilha {
-    private int[] elementos;
+public class Pilha<T> {
+    private T[] elementos;
     private int quantidade;
 
     //Criar uma nova pilha – Pilha()
-    public Pilha() {
-        elementos = new int[5];
+    public Pilha(Class<T> type) {
+        elementos = (T[]) Array.newInstance(type, 5);
         quantidade = 0;
     }
 
-    public Pilha(int limite) {
-        elementos = new int[limite];
+    public Pilha(Class<T> type, int limite) {
+        elementos = (T[]) Array.newInstance(type, limite);
         quantidade = 0;
     }
 
@@ -39,7 +41,7 @@ public class Pilha {
     }
 
     //Inserir um elemento e no topo da pilha – empilhar(e)
-    public void empilhar(int elemento) {
+    public void empilhar(T elemento) {
         if(estaCheia())
             System.out.println("A pilha está cheia, não é possível empilhar!");
         else {
@@ -49,11 +51,11 @@ public class Pilha {
     }
 
     //Remover o elemento e no topo da pilha – desempilhar()
-    public int desempilhar() {
+    public T desempilhar() {
         if(estaVazia())
-            return -1;
+            return null;
         else {
-            int removido = elementos[quantidade - 1];
+            T removido = elementos[quantidade - 1];
             quantidade--;
 
             return removido;
@@ -61,9 +63,9 @@ public class Pilha {
     }
 
     //Acessar o elemento no topo da pilha – retornarElemento()
-    public int retornarElemento() {
+    public T retornarElemento() {
         if(estaVazia())
-            return -1;
+            return null;
         else
             return elementos[quantidade - 1];
     }

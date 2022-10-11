@@ -5,8 +5,8 @@ import javax.swing.JOptionPane;
 /**
  * Lista Simplesmente Encadeada (LSE)
  */
-public class LSE {
-    private No primeiro;
+public class LSE<T> {
+    private No<T> primeiro;
     private int quantidade;
 
     //Criar uma nova lista – Lista()
@@ -29,11 +29,11 @@ public class LSE {
     }
 
     //Acessar o elemento na posição i – retornarElemento(i)
-    public No retornarElemento(int posicao) {
+    public No<T> retornarElemento(int posicao) {
         if(!entradaValida(posicao))
             return null;
         else {
-            No elementoAtual = primeiro;
+            No<T> elementoAtual = primeiro;
             for(int i = 0; i < posicao; i++)
                 elementoAtual = elementoAtual.getProximo();
 
@@ -50,12 +50,12 @@ public class LSE {
     }
 
     //Inserir um elemento e na posição i – adicionarPosicao(e, i)
-    public void adicionarPosicao(No noNovo, int posicao) {
+    public void adicionarPosicao(No<T> noNovo, int posicao) {
         if(!entradaValida(posicao)) {
             System.out.println("Posição deve ser maior ou igual a zero e menor ou igual a quantidade.");
         } else {
-            No noAntigo = retornarElemento(posicao);
-            No noAnterior = retornarElemento(posicao - 1);
+            No<T> noAntigo = retornarElemento(posicao);
+            No<T> noAnterior = retornarElemento(posicao - 1);
             
             noNovo.setProximo(noAntigo);
             
@@ -70,23 +70,23 @@ public class LSE {
     }
 
     //Inserir um elemento e no início – adicionarInicio(e)
-    public void adicionarInicio(No noNovo) {
+    public void adicionarInicio(No<T> noNovo) {
         adicionarPosicao(noNovo, 0);
     }
 
     //Inserir um elemento e no final – adicionarFinal(e)
-    public void adicionarFinal(No noNovo) {
+    public void adicionarFinal(No<T> noNovo) {
         adicionarPosicao(noNovo, quantidade);
     }
 
     //Remover o elemento e na posição i – removerPosicao(i)
-    public No removerPosicao(int posicao) {
+    public No<T> removerPosicao(int posicao) {
         //validar
         if(!entradaValida(posicao))
             return null;
         else {
-            No noAnterior = retornarElemento(posicao - 1);
-            No noRemovido = retornarElemento(posicao);
+            No<T> noAnterior = retornarElemento(posicao - 1);
+            No<T> noRemovido = retornarElemento(posicao);
 
             if(noAnterior != null)
                 noAnterior.setProximo(noRemovido.getProximo());
@@ -102,18 +102,18 @@ public class LSE {
     }
 
     //Remover o elemento no inicio – removerInicio()
-    public No removerInicio() {
+    public No<T> removerInicio() {
         return removerPosicao(0);
     }
 
     //Remover o elemento no final – removerFinal()
-    public No removerFinal() {
+    public No<T> removerFinal() {
         return removerPosicao(quantidade - 1);
     }
 
     //Exibir todos os elementos
     public void exibir(){
-        No atual = primeiro;
+        No<T> atual = primeiro;
         String elementos = "";
         for (int i = 0; i < quantidade; i++) {
             elementos += atual.getElemento();

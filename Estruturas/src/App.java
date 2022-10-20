@@ -1,14 +1,19 @@
-import estruturas.dinamica.LSE;
-import estruturas.dinamica.No;
-
 public class App {
     public static void main(String[] args) throws Exception {
-        LSE<String> lista = new LSE<>();
-        lista.adicionarFinal(new No<>("Harry Potter"));
-        lista.adicionarInicio(new No<>("Senhor dos aneis"));
-        lista.adicionarPosicao(new No<>("One piece"), 1);
+        System.out.println(doisElevadoIterativo(0));
+    }
 
-        lista.exibir();
+    public static double doisElevadoA(double n) {
+        if(n == 0)
+            return 1;
 
+        return 2 * doisElevadoA(n - 1);
+    }
+
+    public static double doisElevadoIterativo(double n) {
+        double valor = 1;
+        while(n-- > 0)
+            valor *= 2;
+        return valor;
     }
 }

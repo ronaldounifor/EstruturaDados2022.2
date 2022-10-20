@@ -5,9 +5,9 @@ import javax.swing.JOptionPane;
 /**
  * Pilha Encadeada
  */
-public class PilhaEncadeada {
-    private No primeiro;
-    private No ultimo;
+public class PilhaEncadeada<T> {
+    private No<T> primeiro;
+    private No<T> ultimo;
     private int quantidade;
 
     //Criar uma nova fila – Pilha()
@@ -31,12 +31,12 @@ public class PilhaEncadeada {
     }
 
     //Acessar o elemento no topo da pilha – retornarElemento()
-    public No retornarElemento() {
+    public No<T> retornarElemento() {
         return ultimo;
     }
 
     //Inserir um elemento e no topo da pilha – empilhar(e)
-    public void empilhar(No novoNo) {
+    public void empilhar(No<T> novoNo) {
         if(estaVazia()) {
             primeiro = novoNo;
             ultimo = novoNo;
@@ -48,13 +48,13 @@ public class PilhaEncadeada {
     }
 
     //Remover o elemento e no topo da pilha – desempilhar()
-    public No desempilhar() {
+    public No<T> desempilhar() {
         if(estaVazia()) {
             return null;
         } else {
-            No removido = ultimo;
+            No<T> removido = ultimo;
 
-            No noAnterior = null;
+            No<T> noAnterior = null;
             for(int i = 1; i < quantidade; i++) {
                 if(noAnterior == null)
                     noAnterior = primeiro;
@@ -77,7 +77,7 @@ public class PilhaEncadeada {
 
     //Exibir todos os elementos
     public void exibir(){
-        No atual = primeiro;
+        No<T> atual = primeiro;
         String elementos = "";
         for (int i = 0; i < quantidade; i++) {
             elementos += atual.getElemento();

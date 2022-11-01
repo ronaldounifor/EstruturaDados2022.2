@@ -12,6 +12,12 @@ public class NoAB {
         this.direita = null;
     }
 
+    public NoAB(int elemento) {
+        this.elemento = elemento;
+        this.esquerda = null;
+        this.direita = null;
+    }
+
     public NoAB(int elemento, NoAB esquerda, NoAB direita) {
         this.elemento = elemento;
         this.esquerda = esquerda;

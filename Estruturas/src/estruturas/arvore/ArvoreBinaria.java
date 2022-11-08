@@ -59,7 +59,47 @@ public class ArvoreBinaria {
     }
 
     // Retornar o nível do elemento e – nivelElemento(e)
+    public int nivelElemento(int elemento) {
+        NoAB no = buscarElemento(elemento);
+
+        if(raiz == no)
+            return 0;
+
+        NoAB noPai = buscarPai(elemento);
+
+        if(noPai != null)
+            return nivelElemento(noPai.getElemento()) + 1;
+        else
+            return -1;
+    }
+
     // Resgatar a altura da árvore – alturaArvore()
+    public int alturaArvore() {
+        if(raiz == null)
+            return -1;
+        
+        return alturaElemento(raiz);        
+    }
+
+    private int alturaElemento(NoAB no) {
+        if(ehFolha(no))
+            return nivelElemento(no.getElemento()) + 1;
+
+        int alturaEsquerda = -1;
+        if(no.getEsquerda() != null)
+            alturaEsquerda = alturaElemento(no.getEsquerda());
+        
+        int alturaDireita = -1;
+        if(no.getDireita() != null)
+            alturaDireita = alturaElemento(no.getDireita());
+
+        if(alturaEsquerda > alturaDireita)
+            return alturaEsquerda + 1;
+        else
+            return alturaDireita + 1;
+    }
+
+
     // Adicionar e à esquerda de p – adicionarEsquerda(e, p)
     public void adicionarEsquerda(int elemento, int pai) {
         NoAB noPai = buscarElemento(pai);

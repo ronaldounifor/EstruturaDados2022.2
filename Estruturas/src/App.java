@@ -9,17 +9,19 @@ public class App {
         ArvoreBinaria arvore = new ArvoreBinaria(raiz);
 
         arvore.adicionarDireita(7, 1);
+        arvore.adicionarEsquerda(6, 1);
         arvore.adicionarEsquerda(2, 7);
         arvore.adicionarDireita(8, 7);
         arvore.adicionarEsquerda(3, 2);
         arvore.adicionarDireita(4, 2);
         arvore.adicionarEsquerda(5, 8);
         arvore.adicionarDireita(9, 8);
-        arvore.adicionarEsquerda(6, 3);
-
-        arvore.removerElemento(7);
+        
 
         BTreePrinter.printNode(raiz);
+
+
+        System.out.println(arvore.alturaArvore());
         
     }
 

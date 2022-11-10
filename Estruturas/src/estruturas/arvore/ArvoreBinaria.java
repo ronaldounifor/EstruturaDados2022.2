@@ -1,5 +1,8 @@
 package estruturas.arvore;
 
+import estruturas.dinamica.FilaEncadeada;
+import estruturas.dinamica.No;
+
 public class ArvoreBinaria {
     private NoAB raiz;
     
@@ -109,7 +112,33 @@ public class ArvoreBinaria {
         noPai.setDireita(new NoAB(elemento));
     }
 
-    // TODO Desafio: Adicionar elemento
+    public void adicionar(int elemento) {
+        NoAB no = new NoAB(elemento);
+
+        if(raiz == null) {
+            raiz = no;
+            return;
+        }
+
+        FilaEncadeada fila = new FilaEncadeada();
+        fila.enfileirar(new No<>(raiz.getElemento()));
+        
+        while(!fila.estaVazia()) {
+            NoAB noAux = buscarElemento((Integer)fila.desenfileirar().getElemento());
+
+            if(noAux.getEsquerda() == null) {
+                noAux.setEsquerda(no);
+                return;
+            }
+            if(noAux.getDireita() == null) {
+                noAux.setDireita(no);
+                return;
+            }
+            
+            fila.enfileirar(new No<>(noAux.getEsquerda().getElemento()));
+            fila.enfileirar(new No<>(noAux.getDireita().getElemento()));
+        }
+    }
     
     //FIXME otimizar
     // Remover o elemento e – removerElemento(e)
@@ -179,5 +208,9 @@ public class ArvoreBinaria {
 
     private boolean ehFolha(NoAB no) {
         return no.getEsquerda() == null && no.getDireita() == null;
+    }
+
+    public NoAB getRaiz() {
+        return raiz;
     }
 }

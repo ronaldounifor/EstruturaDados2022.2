@@ -75,21 +75,18 @@ public class ArvoreBinaria {
 
     // Resgatar a altura da árvore – alturaArvore()
     public int alturaArvore() {
-        if(raiz == null)
-            return -1;
-        
         return alturaElemento(raiz);        
     }
 
     private int alturaElemento(NoAB no) {
-        if(ehFolha(no))
-            return nivelElemento(no.getElemento()) + 1;
+        if(raiz == null)
+            return 0;
 
-        int alturaEsquerda = -1;
+        int alturaEsquerda = 0;
         if(no.getEsquerda() != null)
             alturaEsquerda = alturaElemento(no.getEsquerda());
         
-        int alturaDireita = -1;
+        int alturaDireita = 0;
         if(no.getDireita() != null)
             alturaDireita = alturaElemento(no.getDireita());
 

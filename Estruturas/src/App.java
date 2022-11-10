@@ -16,10 +16,8 @@ public class App {
         arvore.adicionarDireita(4, 2);
         arvore.adicionarEsquerda(5, 8);
         arvore.adicionarDireita(9, 8);
-        
 
         BTreePrinter.printNode(raiz);
-
 
         System.out.println(arvore.alturaArvore());
         

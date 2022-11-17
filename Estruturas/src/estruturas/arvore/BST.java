@@ -1,8 +1,5 @@
 package estruturas.arvore;
 
-import estruturas.dinamica.FilaEncadeada;
-import estruturas.dinamica.No;
-
 /*
  * Árvore Binária de Busca (Binary Search Tree - BST)
  */
@@ -26,7 +23,6 @@ public class BST {
             return false;
     }
 
-    //FIXME
     // Buscar um determinado elemento e – buscarElemento(e)
     public NoAB buscarElemento(int elemento) {
         return buscarElemento(elemento, raiz);
@@ -36,15 +32,13 @@ public class BST {
         if(estaVazia() || noAtual == null) return null;
         
         if(elemento == noAtual.getElemento()) return noAtual;
-        
-        NoAB resultado = buscarElemento(elemento, noAtual.getEsquerda());
-        if(resultado == null)
-            resultado = buscarElemento(elemento, noAtual.getDireita());
 
-        return resultado;
+        if(elemento < noAtual.getElemento())
+            return buscarElemento(elemento, noAtual.getEsquerda());
+        else
+            return buscarElemento(elemento, noAtual.getDireita());
     }
 
-    //TODO verificar
     // Descobre o pai de um elemento e – buscarPai(e)
     public NoAB buscarPai(int elemento) {
         return buscarPai(elemento, raiz);
@@ -59,11 +53,10 @@ public class BST {
         if(noAtual.getDireita() != null && noAtual.getDireita().getElemento() == filho)
             return noAtual;
 
-        NoAB resultado = buscarPai(filho, noAtual.getEsquerda());
-        if(resultado == null)
-            resultado = buscarPai(filho, noAtual.getDireita());
-
-        return resultado;
+        if(filho < noAtual.getElemento())
+            return buscarPai(filho, noAtual.getEsquerda());
+        else
+            return buscarPai(filho, noAtual.getDireita());
     }
 
     // Retornar o nível do elemento e – nivelElemento(e)
@@ -104,7 +97,6 @@ public class BST {
             return alturaDireita + 1;
     }
 
-    //TODO verificar
     // Adicionar e à esquerda de p – adicionarEsquerda(e, p)
     public void adicionarEsquerda(int elemento, int pai) {
         NoAB noPai = buscarElemento(pai);
@@ -118,23 +110,30 @@ public class BST {
     }
 
     public void adicionar(int elemento) {
-        adicionar(elemento, raiz);
+        if(raiz == null)
+            raiz = new NoAB(elemento);
+        else
+            adicionar(elemento, raiz, null);
     }
 
-    private void adicionar(int elemento, NoAB no) {
-        if(elemento > no.getElemento())
-            if(no.getDireita() == null)
-                no.setDireita(new NoAB(elemento));
+    //TODO melhorar o return
+    private void adicionar(int elemento, NoAB noAtual, NoAB noPai) {
+        if(noAtual == null) {
+            if(elemento < noPai.getElemento())
+                noPai.setEsquerda(new NoAB(elemento));
             else
-                adicionar(elemento, no.getDireita());
+                noPai.setDireita(new NoAB(elemento));
+
+            return;
+        }
+
+        if(elemento < noAtual.getElemento())
+            adicionar(elemento, noAtual.getEsquerda(), noAtual);
         else
-            if(no.getEsquerda() == null)
-                no.setEsquerda(new NoAB(elemento));
-            else
-                adicionar(elemento, no.getEsquerda());
+            adicionar(elemento, noAtual.getDireita(), noAtual);
     }
     
-    //FIXME otimizar
+    //FIXME colocar para BST
     // Remover o elemento e – removerElemento(e)
     public NoAB removerElemento(int elemento) {
         NoAB noPai = buscarPai(elemento);
@@ -202,5 +201,9 @@ public class BST {
 
     private boolean ehFolha(NoAB no) {
         return no.getEsquerda() == null && no.getDireita() == null;
+    }
+
+    public NoAB getRaiz() {
+        return raiz;
     }
 }
